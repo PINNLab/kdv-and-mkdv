@@ -12,6 +12,10 @@ from scipy.integrate import quad, dblquad
 from math import sqrt
 import deepxde as dde
 
+seed_value = 0 # setting seed to a fixed value
+np.random.seed(seed_value)
+tf.random.set_seed(seed_value)
+dde.config.set_random_seed(seed_value)
 
 '''
 Setting json encoder for converting numpy.integer to python's int when saving model data.
@@ -23,10 +27,6 @@ class MyEncoder(json.JSONEncoder):
     else:
       return super(MyEncoder, self).default(obj)
 
-seed_value = 0 # setting seed to a fixed value
-np.random.seed(seed_value)
-tf.random.set_seed(seed_value)
-dde.config.set_random_seed(seed_value)
 
 class PDE:
   def __init__(self, p, net_data):
